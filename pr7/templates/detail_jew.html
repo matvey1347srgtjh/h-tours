@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="otdel">
+<a href="{% url 'tovary' %}"><button class="auth-button">Назад</button></a>
+<br>
+  
+<div class="df-otdel">
+<img src="{{jew.image.url}}" width="50%" style="border-radius: 8px"> 
+<div class="df-raz">
+<b>Страна:</b> {{jew.name|safe}}
+<b>Цена за человека:</b> <p>{{jew.price}} $</p>
+<b>Кол-во:</b> <p>{{jew.days}} дней</p>
+<b>Город:</b> <p>{{jew.city}}</p>
+</div>
+</div>
+<div class="descr" style="max-width: 1200px">
+<b>Описание:</b> <p>{{jew.description|safe}}</p>
+</div>
+
+
+
+</div>
+
+
+{% endblock %}

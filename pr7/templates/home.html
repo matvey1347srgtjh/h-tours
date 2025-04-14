@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<script src="{% static 'style/slider.js' %}"></script>
+<style>
+
+    
+    .preloader {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .preloader img {
+        width: 400px;
+        height: 300px;
+    }
+    
+    .preloader.hidden {
+        display: none;
+    }
+    
+    .content-wrapper.first-visit {
+        opacity: 0; /* Start with invisible content */
+        transition: opacity 1s ease-in-out; /* Define the transition for opacity */
+    }
+    
+    .content-wrapper.visible {
+        opacity: 1; /* End with visible content */
+    }
+</style>
+
+<div class="preloader">
+    <img src="{% static 'images/loading.gif' %}" alt="Loading...">
+</div>
+
+<div class="content-wrapper">
+    <main>
+        <section class="hero">
+            <h1>Путешествуйте с комфортом</h1>
+            <p>Лучшие направления по выгодным ценам</p>
+            <a href="{% url 'tovary' %}" class="button1">Подобрать тур</a>
+        </section>
+
+        <section class="news-slider">
+            <div class="slider-container">
+                <div class="slider-track">
+                    {% for slide in slides %}
+                    <div class="slide">
+                        <h3>{{ slide.title}}</h3>
+                        <p>{{ slide.description|safe}}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="slider-dots"></div>
+            </div>
+        <br><br>
+            <div class="slide-fake"><h2>О нас</h2>
+<p id="about">Добро пожаловать в H-tours, вашего надежного партнера в создании незабываемых путешествий. В H-tours мы верим, что путешествия — это не просто посещение новых мест, а создание воспоминаний, которые останутся на всю жизнь. Наша миссия — предоставлять нашим клиентам исключительные туристические услуги, которые соответствуют их уникальным потребностям и предпочтениям.</p>
+</div><br><br>
+<div class="slide-fake">
+<h2>Наша история</h2>
+<p>Основанная в 2025 году, компания H-tours возникла из страсти к путешествиям и желания поделиться красотой мира с другими. Наша команда опытных энтузиастов путешествий занимается созданием персонализированных туристических маршрутов, которые демонстрируют все лучшее, что может предложить каждое направление. Независимо от того, ищете ли вы приключения, отдых или культурное погружение, у нас есть идеальный тур для вас.</p>
+</div><br><br>
+
+<div class="slide-fake">
+<h2>Наши ценности</h2>
+<b>Удовлетворение клиентов:</b> <p>Мы ставим потребности наших клиентов на первое место и стремимся превзойти их ожидания в каждом туре.</p><br>
+<b>Честность:</b> <p>Мы работаем честно и прозрачно, гарантируя, что наши клиенты получают наилучшее соотношение цены и качества.</p><br>
+<b>Инновации:</b> <p>Мы постоянно ищем новые способы улучшения наших услуг и предоставления уникальных туристических впечатлений.</p><br>
+<b>Устойчивость:</b> <p>Мы привержены ответственным туристическим практикам, которые защищают окружающую среду и поддерживают местные сообщества.</p>
+</div>        
+</section>
+<div class="reviews-section">
+    
+    <div class="reviews-track track1">
+        <div class="reviews-content">
+            {% for review in reviews %}
+            <div class="review-card">
+                {% if review.user.avatar %}
+                    <img src="{{ review.user.avatar.avatar.url }}" alt="Аватар пользователя">
+                {% else %}
+                    <img src="{% static 'images/anonymous.png' %}" alt="Аватар пользователя">
+                {% endif %}
+                <h3>{{ review.user.username }}</h3>
+                <p>{{ review.comment }}</p>
+                <div class="rating">
+                    {% for i in "12345" %}
+                        {% if i <= review.rating|stringformat:"i" %}
+                            <span class="filled">★</span>
+                        {% else %}
+                            <span>☆</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</div>
+</main>
+</div>
+
+<script>
+    window.addEventListener('load', function() {
+        const preloader = document.querySelector('.preloader');
+        const contentWrapper = document.querySelector('.content-wrapper');
+        
+        if (performance.navigation.type === 1) {
+            preloader.classList.add('hidden');
+            contentWrapper.classList.add('visible');
+        } else {
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+                contentWrapper.classList.add('visible');
+            }, 3000);
+            console.log('Page loaded');
+        }
+    });
+
+
+    document.querySelectorAll('.reviews-track').forEach(track => {
+        const content = track.querySelector('.reviews-content');
+        const cards = Array.from(content.children);
+        
+        
+        cards.forEach(card => {
+            const clone = card.cloneNode(true);
+            content.appendChild(clone);
+        });
+        cards.forEach(card => {
+            const clone = card.cloneNode(true);
+            content.appendChild(clone);
+        });
+    });
+
+</script>
+
+{% endblock %}

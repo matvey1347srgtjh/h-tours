@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+<html lang="ru">
+
+    {% block content %}
+    <br>
+    <h1 class="chat-header">Чат с Поддержкой</h1><br>
+    
+    <div class="chat-container">
+        <div id="chat-box" class="chat-box">
+            {% for message in messages %}
+                <div class="message-row {% if message.sender == request.user %}message-right{% else %}message-left{% endif %}">
+                    <div class="message-bubble">
+                        {% if message.sender != request.user %}
+                            <img src="{% static 'images/anonymous.png' %}" alt="Аватар пользователя" class="avatar">
+                        {% endif %}
+                        <p class="message-content {% if message.sender == request.user %}user-message{% else %}admin-message{% endif %}">
+                            <strong class="username">{{ message.sender.username }}</strong><br>
+                            <span class="message-text">{{ message.content }}</span>
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    
+        {% if not messages %}
+        <div class="suggested-messages" id="suggested-messages">
+            <p>Предлагаемые сообщения:</p>
+            <div class="suggested-buttons">
+                <button type="button" class="suggested-button" onclick="insertText('Проблемы с оплатой')">Проблемы с оплатой</button>
+                <button type="button" class="suggested-button" onclick="insertText('Не могу подобрать тур')">Не могу подобрать тур</button>
+                <button type="button" class="suggested-button" onclick="insertText('Как изменить бронирование?')">Как изменить бронирование?</button>
+            </div>
+        </div>
+        {% endif %}
+    
+        <form method="post" action="{% url 'send_message' session_id=chat_session.id %}" class="message-form" onsubmit="hideSuggestedMessages()">
+            {% csrf_token %}
+            <input type="text" name="content" placeholder="Введите сообщение..." required class="message-input" id="message-input">
+            <button type="submit" class="send-button">
+                &#10148;
+            </button>
+        </form>
+    </div><br><br>
+
+    <script>
+        function insertText(text) {
+            document.getElementById('message-input').value = text;
+        }
+
+        function hideSuggestedMessages() {
+            var suggestedMessages = document.getElementById('suggested-messages');
+            if (suggestedMessages) {
+                suggestedMessages.style.display = 'none';
+            }
+        }
+    </script>
+
+    {% endblock %}
+</html>

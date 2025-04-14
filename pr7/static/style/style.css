@@ -1,0 +1,1182 @@
+::-webkit-scrollbar {
+    display: none;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+.df-header {
+    display: flex;
+    flex-direction: column;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.textarea {
+    max-width: 335px;
+    min-width: 335px;
+    min-height: 377px;
+    border-radius: 8px;
+}
+
+.slide-fake {
+    min-width: 100%;
+    padding: 20px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 4px 4px rgba(0,0,0,0.1);
+    text-align: center;
+    min-height: 100px;
+}
+
+.descr {
+    max-width: 1200px;
+    padding: 20px;
+    background: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 4px 4px rgba(0,0,0,0.1);
+    text-align: center;
+    min-height: 100px;
+}
+
+.df-forms {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    
+}
+
+
+header {
+    background: #333;
+    color: white;
+    padding: 1rem;
+}
+
+
+
+.otdel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+
+.container {
+    max-width: 1200px;
+    margin: 0% auto;
+    border: #ddd 1px solid;
+    border-radius: 8px;
+    background: #f8f8f8;
+    display: flex;
+    flex-direction: column;
+    
+    height: auto;
+    gap: 20px;
+    align-items: center;
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Главная секция */
+.hero {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/static/images/hero-bg.jpg');
+    background-size: cover;
+    color: white;
+}
+
+/* Форма авторизации */
+.auth-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.input {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.auth-button {
+    width: 100%;
+    padding: 0.8rem;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.3s, color 0.3s;
+}
+
+.auth-button:hover {
+    background: #524d4d;
+    color: white;   
+}
+
+
+.feath-button {
+    width: 100%;
+    padding: 0.8rem;
+    background: white;
+    color: rgb(0, 0, 0);
+    border: #ddd 1px solid;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.5s, color 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.feath-button:hover {
+    background: #d32020;
+    color: white;   
+}
+
+.feath1-button {
+    width: 100%;
+    padding: 0.8rem;
+    background: #d32020;
+    color: white;
+    border: #ddd 1px solid;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.5s, color 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.feath1-button:hover {
+    background: #ffffff;
+    color: rgb(0, 0, 0);   
+}
+
+
+.brone-button {
+    width: 100%;
+    padding: 0.8rem;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+    
+    transition: background 0.7s, color 0.3s;
+}
+
+.brone-button:hover {
+    background: #20d3caf6;
+    color: white;   
+
+}
+
+
+/* Футер */
+footer {
+    background: #333;
+    color: white;
+    padding: 1rem;
+}
+
+footer p {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+} 
+
+
+
+
+.tours-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.tours-grid-1 {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.tour-card {
+    margin-bottom: 20px; 
+    padding: 15px; 
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    background-color: #fff; 
+}
+
+.tour-card-1 {
+    background: white;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    min-width: 275px;
+    
+    margin: 0 auto;
+    
+}
+
+.tour-card-1 img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.form-1 {
+    width: 90%;
+    margin: 0% auto;
+    margin-bottom: 10px;
+}
+
+.tour-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.button1 {
+    width: 35%;
+    padding: 0.8rem;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;
+}
+
+.button1:hover {
+    background: #524d4d;
+    color: white;   
+}
+
+
+.button2 {
+    width: 15%;
+    padding: 0.8rem;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button2:hover {
+    background: #524d4d;
+    color: white;   
+}
+
+
+.google {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    
+    
+    
+    
+    transition: background-color 0.3s ease;
+    
+    text-decoration: none;
+
+
+
+
+    /* width: 100%;
+    padding: 0.8rem;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    
+    transition: background 0.3s, color 0.3s; */
+}
+
+.google:hover {
+    background-color: #357ae8; 
+}
+
+.google:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.5);
+}
+
+
+
+
+
+.tour-image {
+    width: 10%;
+    height: auto;
+    max-width: 100%;
+    
+    object-fit: cover;
+}
+
+.tour-card {
+    max-width: 100%;
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .tour-card {
+        max-width: 100%;
+    }
+
+    .tour-card-1 {
+        max-width: 300px;
+        min-width: 300px;
+    }
+
+    .hero {
+        height: 85vh;
+      
+    }
+
+    .button2 {
+        width: 30%;
+    }
+    
+
+   
+}
+
+@media screen and (max-width: 900px) {
+    .tours-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tour-card {
+        max-width: 100%;
+    }
+
+   
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.scroll-to-top:hover {
+    opacity: 1;
+}
+
+/* Стили для личного кабинета */
+.profile-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 20px;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.profile-info {
+    grid-column: 1 / -1;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-avatar {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.profile-avatar img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.profile-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.profile-bookings,
+.profile-wishlist {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    gap: 20px;
+}
+
+.booking-card {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.booking-card img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.booking-info {
+    flex: 1;
+}
+
+.booking-info h3 {
+    margin: 0 0 0.5rem 0;
+}
+
+.wishlist-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.tour-card {
+    text-align: center;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.tour-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.tour-card h3 {
+    margin: 0 0 0.5rem 0;
+}
+
+.price {
+    font-weight: bold;
+    color: #333;
+    margin: 0.5rem 0;
+}
+
+.btn {
+    background-color: #333;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #555;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-card {
+        flex-direction: column;
+    }
+
+    .booking-card img {
+        width: 100%;
+    }
+}
+
+/* Стили для страницы отзывов */
+.reviews-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 20px;
+    overflow: hidden;
+}
+
+.reviews-section {
+    margin: 3rem 0;
+}
+
+.reviews-track {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+}
+
+.reviews-content {
+    display: flex;
+    gap: 2rem;
+    position: relative;
+}
+
+.track1 .reviews-content {
+    animation: scrollRight 40s linear infinite;
+}
+
+.track2 .reviews-content {
+    animation: scrollLeft 35s linear infinite;
+}
+
+.track3 .reviews-content {
+    animation: scrollRight 45s linear infinite;
+}
+
+.review-card {
+    flex: 0 0 300px;
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.review-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.review-card h3 {
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.review-card p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.rating {
+    color: #ffd700;
+    font-size: 1.2rem;
+}
+
+@keyframes scrollRight {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes scrollLeft {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
+.review-card:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+
+
+@media (max-width: 768px) {
+    .review-card {
+        flex: 0 0 250px;
+    }
+    
+    .track1 .reviews-content {
+        animation-duration: 30s;
+    }
+    
+    .track2 .reviews-content {
+        animation-duration: 25s;
+    }
+    
+    .track3 .reviews-content {
+        animation-duration: 35s;
+    }
+}
+
+
+.reviews-track:hover .reviews-content {
+    animation-play-state: paused;
+}
+
+
+.reviews-content {
+    transition: animation-play-state 0.3s ease;
+}
+
+
+
+.preloader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preloader img {
+    width: 400px;
+    height: 300px;
+}
+
+.preloader.hidden {
+    display: none;
+}
+
+
+
+.content-wrapper.first-visit {
+    opacity: 0; 
+    transition: opacity 1s ease-in-out; 
+    
+}
+
+.content-wrapper.visible {
+    opacity: 1;
+    
+}
+
+
+.chat-header {
+    text-align: center;
+    letter-spacing: 2px;
+    
+}
+
+.chat-container {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 620px; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    border-radius: 10px;
+}
+
+.chat-box {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    
+}
+
+.message-row {
+    display: flex;
+    width: 100%;
+}
+
+.message-right {
+    justify-content: flex-end;
+}
+
+.message-left {
+    justify-content: flex-start;
+}
+
+.message-bubble {
+    max-width: 60%;
+    margin: 5px;
+    min-width: 250px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.message-content {
+    padding: 10px;
+    border-radius: 10px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-align: left;
+    position: relative;
+    max-width: 300px;
+}
+
+.user-message {
+    background: linear-gradient(rgba(255, 146, 44, 0.8), rgba(255, 39, 100, 0.8));
+}
+
+.admin-message {
+    background-color: #f1f1f1;
+}
+
+.name {
+    text-align: center;
+}
+
+.username {
+    white-space: nowrap;
+    position: absolute;
+    top: 5px;
+    left: 10px;
+}
+
+.message-text {
+    display: block;
+    margin-top: 20px;
+}
+
+.message-form {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.message-input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 5px;
+}
+
+.send-button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: rgb(245, 192, 123);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.7s ease, background-color 0.7s ease-in-out;
+    
+
+}
+
+.send-button:hover {
+    background-color: rgb(223, 68, 22);
+    transform: scale(1.1);
+}
+
+.suggested-messages {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.suggested-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.suggested-button {
+    padding: 8px 12px;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.suggested-button:hover {
+    background-color: rgb(245, 192, 123);
+}
+
+.booking-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.tour-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.tour-details {
+    padding: 15px;
+}
+
+.quantity-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-add {
+    background: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.btn-add:hover {
+    background: #555;
+}
+
+.total-price {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.btn-alert {
+    background: #d9534f;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.btn-alert:hover {
+    background: #c9302c;
+}
+
+.booking-form {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.empty-cart {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #666;
+}
+
+.star-rating {
+    direction: rtl;
+    display: inline-flex;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 2em;
+    color: #ddd;
+    cursor: pointer;
+}
+
+.star-rating input[type="radio"]:checked ~ label {
+    color: #f5b301;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #f5b301;
+}
+
+
+.star-rating-1 {
+    display: inline-block;
+    font-size: 1.5em; /* Размер звезд */
+    color: #ddd; /* Цвет пустых звезд */
+}
+
+.star-rating-1 .filled {
+    color: #f5b301; /* Цвет заполненных звезд */
+}
+
+/* Стили для бургер-меню */
+.burger-menu {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 10px;
+    color: white;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    z-index: 10;
+    margin-right: 20px;
+}
+
+.burger-menu span {
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: white;
+    position: absolute;
+    transition: all 0.3s ease;
+}
+
+.burger-menu span:nth-child(1) {
+    top: 0;
+}
+
+.burger-menu span:nth-child(2) {
+    top: 12px;
+}
+
+.burger-menu span:nth-child(3) {
+    top: 24px;
+}
+
+.burger-menu.active span:nth-child(1) {
+    transform: rotate(45deg);
+    top: 12px;
+}
+
+.burger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 12px;
+}
+
+/* Стили для навигации */
+.main-nav-links {
+    display: flex;
+    list-style: none;
+    transition: all 0.3s ease;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.main-nav-links li a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+}
+
+@media (max-width: 768px) {
+    .burger-menu {
+        display: block;
+    }
+
+    .main-nav-links {
+        display: none;
+        position: absolute; /* Используем absolute для позиционирования под хедером */
+        top: 124px; /* Устанавливаем сразу под хедером, измените значение в зависимости от высоты хедера */
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: #333;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    .main-nav-links.active {
+        display: flex;
+    }
+
+    .main-nav-links li {
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        width: 100%;
+    }
+
+    .main-nav-links.active li {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .main-nav-links li a {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+    }
+
+    footer  {
+    
+   
+   
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+     
+        
+        
+    }
+}
+
+.google_logo {
+    width: 25px;
+    height: 25px;
+}
+
+.footer-links  {
+    
+    list-style: none;
+   
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    
+    
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: white;
+}
+
+
+/* РЕЙТИНГ */
+
+.df-rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+
+.df-raz {
+    display: flex;
+    flex-direction: column;
+    background: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 4px 4px rgba(0,0,0,0.1);
+    text-align: center;
+    
+    
+}
+
+.df-otdel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 50px;
+    gap: 40%;
+    
+    
+}

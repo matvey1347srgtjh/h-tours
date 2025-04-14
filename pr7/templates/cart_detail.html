@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="booking-header">
+    <br><h1>Бронирование тура</h1>
+</div>
+
+
+
+{% if cart|length > 0 %}
+<div class="tours-container">
+<div class="tours-grid-1">
+    {% for item in cart %}
+    <div class="tour-card-1">
+        <img src="{{ item.jew.image.url }}" alt="{{ item.jew.name }}" class="tour-image">
+        <div class="tour-details">
+            <h2>{{ item.jew.name |safe}}</h2>
+            <p><strong>Город:</strong> {{ item.jew.city |safe}}</p>
+            <p><strong>Кол-во дней:</strong> {{ item.jew.days}}</p>
+            <p><strong>Цена за человека:</strong> {{ item.price }} $</p>
+            <div class="quantity-control">
+                <a href="{% url 'cart_remove' item.jew.id %}" class="btn-add">-</a>
+                <span>Кол-во человек: <strong>{{ item.quantity }}</strong></span>
+                <a href="{% url 'cart_add' item.jew.id %}?update_quantity=1" class="btn-add">+</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+</div>
+<div class="total-price">
+    <h3>Общая стоимость: {{ cart.get_total_price }} $</h3><br>
+    <a href="{% url 'cart_clear' %}" class="btn-alert">Очистить бронирование</a>
+</div>
+{% else %}
+<p class="empty-cart">Здесь пока ничего нет</p>
+{% endif %}
+
+<div class="booking-form">
+    <h2>Оформление бронирования</h2>
+    {% if cart|length > 0 %}
+    <form action="{% url 'create_order' %}" method="post">
+        {% csrf_token %}
+        {{ orderForm.as_p }}
+        <br>
+        <button type="submit" class="btn">Забронировать</button>
+    </form><br>
+    {% else %}
+    <p>Чтобы забронировать тур, добавьте его в корзину</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="{% static 'images/logo.svg' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    <link rel="stylesheet" href="{% static 'style/slider.css' %}">
+</head>
+<body>
+    <div class="content-wrapper">
+        <div class="df-header">
+            <header>
+                <nav>
+                    <div><a href="/"><img class="logo" src="{% static 'images/logo.svg' %}" alt="logo"></a></div>
+                    <button class="burger-menu" onclick="toggleMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <ul class="main-nav-links">
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="{% url 'tovary' %}">Туры</a></li>
+                        <li><a href="/#about">О нас</a></li>
+                        {% if user.is_authenticated %}
+                            <li><a href="{% url 'profile_view' %}">Профиль</a></li>
+                            <li><a href="{% url 'cart_detail' %}">Бронирования</a></li>
+                        {% else %}
+                            <li><a href="{% url 'auth' %}">Вход</a></li>
+                            <li><a href="{% url 'register' %}">Регистрация</a></li>
+                        {% endif %}
+                        <li><a href="/#reviews">Отзывы</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <footer>
+            <p id="reviews">&copy; 2025 H-tours. Все права защищены.</p>
+            {% if user.is_authenticated %}
+            <ul class="footer-links">
+                <li><a href="{% url 'chat_session' admin_id=2 %}">Чат с поддержкой</a></li>
+            </ul>
+            {% endif %}
+        </footer>
+
+        <button id="scrollToTop" class="scroll-to-top">↑</button>
+    </div>
+
+    <script>
+        const scrollToTopButton = document.getElementById('scrollToTop');
+        const mainNav = document.querySelector('.main-nav-links');
+        const navItems = document.querySelectorAll('.main-nav-links li');
+        const burgerMenu = document.querySelector('.burger-menu');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopButton.style.display = 'block';
+            } else {
+                scrollToTopButton.style.display = 'none';
+            }
+        });
+
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        function toggleMenu() {
+            const mainNav = document.querySelector('.main-nav-links');
+            const burgerMenu = document.querySelector('.burger-menu');
+            const navItems = document.querySelectorAll('.main-nav-links li');
+        
+            mainNav.classList.toggle('active');
+            burgerMenu.classList.toggle('active');
+            navItems.forEach((item, index) => {
+                if (mainNav.classList.contains('active')) {
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, index * 100);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(-20px)';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

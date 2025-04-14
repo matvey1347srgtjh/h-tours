@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load socialaccount %}
+{% load static %}
+{% block content %}
+
+
+<style>
+ 
+</style>
+<div class="auth-container">
+    <form method="POST" class="form">
+        {% csrf_token %}
+        <h2>Регистрация</h2>
+        {{ form.as_p }}
+
+        <button class="auth-button" type="submit">Зарегистрироваться</button>
+        <a href="{% url 'auth' %}">
+            <a href="{% provider_login_url 'google' %}" style="text-decoration:none"><button class="google" type="button"><img class="google_logo" src="{% static 'images/google.svg' %}" alt="logo"><p style="margin: 0% auto">Войти через Google</p></button></a>
+            <button class="auth-button" type="button">Уже есть аккаунт</button>
+        </a>
+    </form><br>
+</div>
+
+{% endblock %}
