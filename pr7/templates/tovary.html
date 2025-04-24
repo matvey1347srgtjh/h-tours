@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 {% load static %}
 
@@ -20,27 +21,48 @@
     <div class="tours-grid">
         {% if jewelry_objects %}
             {% for i in jewelry_objects %}
-                <div class="tour-card-1">
-                    <img src="{{ i.image.url }}" alt="{{i.name}}" class="tour-image">
+                <div class="tour-card-1" style="position: relative;">
+                    <div class="image-heart-wrapper" style="position: relative;">
+                        <img src="{{ i.image.url }}" alt="{{i.name}}" class="tour-image">
+                        {% if user.is_authenticated %}
+                            <div class="favorite-heart-form heart-on-image">
+                                {% if i.id in favorite_ids %}
+                                    <form action="{% url 'remove_from_favorites' i.id %}" method="post" style="display:inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="heart-button heart-active" title="Удалить из избранного">
+                                            <span class="heart-icon">&#10084;</span>
+                                        </button>
+                                    </form>
+                                {% else %}
+                                    <form action="{% url 'add_to_favorites' i.id %}" method="post" style="display:inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="heart-button" title="Добавить в избранное">
+                                            <span class="heart-icon">&#10084;</span>
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
                     <a href="{% url 'jew_detail' i.id %}" class="name"><p>{{ i.name |safe}} </p></a>
                     <p class="name"><strong>Город:</strong> {{i.city}}</p>
                     <p class="name"><strong>Кол-во дней:</strong> {{i.days}}</p>
                     <p class="name">{{ i.price }} $</p>
                     <div class="df-rating">
                         {{ i.average_rating|floatformat:1 }}
-                    <div class="tovar-rating" data-rating="{{ i.average_rating }}">
-                        <div class="stars-empty">☆☆☆☆☆</div>
+                        <div class="tovar-rating" data-rating="{{ i.average_rating }}">
+                            <div class="stars-empty">☆☆☆☆☆</div>
+                            <div class="stars-filled">★★★★★</div>
+                        </div>
+                    </div>
                     
-                        <div class="stars-filled">★★★★★</div>
-                    </div></div>
-                
                     {% if user.is_authenticated %}
                         <form action="{% url 'cart_add' i.id %}" method="post" class="form-1">
                             {% csrf_token %}
                             <button class="brone-button" type="submit">Забронировать</button>
                         </form>
                     {% else %}
-                        <p style="color: crimson; text-align:center; margin-bottom:20px;">Чтобы забронировать тур, необходимо войти в аккаунт</p>
+                        <p style="color: crimson; text-align:center; margin-bottom:20px;">Чтобы забронировать тур или добавить в избранное, необходимо войти в аккаунт</p>
                     {% endif %}
                 </div>
             {% endfor %}
@@ -51,39 +73,12 @@
 </section>
 
 <style>
-    
-
-    .stars-empty {
-        color: #ddd;
-    }
-
-    .tovar-rating {
-        position: relative;
-        display: inline-block;
-        font-size: 24px;
-        line-height: 1;
-        margin: 10px 0; /* Добавление отступов сверху и снизу */
-    }
-
-    .stars-empty {
-        color: #ddd;
-    }
-
-    .stars-filled {
-        color: #ffd700;
-        position: absolute;
-        top: 0;
-        left: 0;
-        white-space: nowrap;
-        overflow: hidden;
-        width: 0;
-    }
+   
 </style>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const ratings = document.querySelectorAll('.tovar-rating');
-        
         ratings.forEach(rating => {
             const score = parseFloat(rating.getAttribute('data-rating').replace(',', '.'));
             if (!isNaN(score)) {

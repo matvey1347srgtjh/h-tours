@@ -120,10 +120,7 @@
                                 </a>
                                 <p>{{ favorite.jewelry.price }} $</p>
                                 
-                                <form action="{% url 'remove_from_favorites' favorite.jewelry.id %}" method="post">
-                                    {% csrf_token %}
-                                    <button type="submit" class="feath1-button">Удалить из избранного</button>
-                                </form>
+                                
                             </div>
                             <br>
                         </div>

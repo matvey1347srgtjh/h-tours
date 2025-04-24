@@ -59,19 +59,26 @@ def tovary(request):
 #     }
 #     return render(request, 'tovary.html', context)
 def jewelry_list(request):
-    
     max_price = request.GET.get('max_price')
     jewelry_objects = Jewelry.objects.all()
 
-    
-        
     if max_price:
         jewelry_objects = jewelry_objects.filter(price__lte=max_price)
 
     cart = CartSession(request.session)
+
+    # Получаем избранные туры пользователя и их id
+    favorites = []
+    favorite_ids = []
+    if request.user.is_authenticated:
+        favorites = Favorite.objects.filter(user=request.user).select_related('jewelry')
+        favorite_ids = list(favorites.values_list('jewelry_id', flat=True))
+
     context = {
         'jewelry_objects': jewelry_objects,
-        'cart': cart
+        'cart': cart,
+        'favorites': favorites,
+        'favorite_ids': favorite_ids,  # теперь favorite_ids и favorites доступны в шаблоне
     }
     return render(request, 'tovary.html', context)
 
@@ -370,7 +377,7 @@ def add_to_favorites(request, jewelry_id):
     else:
         messages.info(request, f"{jewelry.name} уже в избранном.")
     
-    return redirect('profile_view')
+    return redirect('tovary')
 
 @login_required(login_url='auth')
 def remove_from_favorites(request, jewelry_id):
@@ -383,7 +390,7 @@ def remove_from_favorites(request, jewelry_id):
     else:
         messages.info(request, f"{jewelry.name} не найдено в избранном.")
     
-    return redirect('profile_view')
+    return redirect('tovary')
 
 
 

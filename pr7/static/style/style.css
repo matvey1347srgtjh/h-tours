@@ -392,6 +392,8 @@ footer p {
         max-width: 100%;
     }
 
+
+
     .tour-card-1 {
         max-width: 300px;
         min-width: 300px;
@@ -596,6 +598,8 @@ html {
     .booking-card img {
         width: 100%;
     }
+
+   
 }
 
 /* Стили для страницы отзывов */
@@ -1179,4 +1183,91 @@ html {
     gap: 40%;
     
     
+}
+
+@media (max-width: 768px) {
+    .df-otdel {
+        gap: 10%;
+    }
+}
+
+.image-heart-wrapper {
+    position: relative;
+    width: 100%;
+}
+.tour-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+.heart-on-image {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.heart-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    transition: transform 0.1s;
+    vertical-align: middle;
+}
+.heart-icon {
+    font-size: 28px;
+    color: #bbb;
+    transition: color 0.2s, transform 0.1s;
+    pointer-events: none;
+    user-select: none;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.08));
+}
+.heart-button:hover .heart-icon,
+.heart-button:focus .heart-icon {
+    color: #ff4b5c;
+    transform: scale(1.2);
+}
+.heart-active .heart-icon {
+    color: #ff4b5c;
+    text-shadow: 0 0 6px #ffb3b3;
+    animation: heart-pop 0.2s;
+}
+@keyframes heart-pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+.favorite-heart-form {
+    margin-bottom: 5px;
+}
+
+.stars-empty {
+    color: #ddd;
+}
+
+.tovar-rating {
+    position: relative;
+    display: inline-block;
+    font-size: 24px;
+    line-height: 1;
+    margin: 10px 0;
+}
+
+.stars-filled {
+    color: #ffd700;
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
 }
