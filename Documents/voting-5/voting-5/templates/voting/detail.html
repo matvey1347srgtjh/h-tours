@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ poll.question }}{% endblock %}
+
+{% block content %}
+<h1 class="page-title">{{ poll.question }}</h1>
+<div class="form-card">
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Выберите вариант:</label>
+            <ul class="choices-list">
+                {% for choice in form.choice.field.queryset %}
+                <li>
+                    <label>
+                        <input type="radio" name="choice" value="{{ choice.pk }}" required>
+                        <span>{{ choice.text }}</span>
+                    </label>
+                </li>
+                {% endfor %}
+            </ul>
+            {% if form.choice.errors %}
+                <span class="form-error">{{ form.choice.errors.0 }}</span>
+            {% endif %}
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn--primary">Голосовать</button>
+        </div>
+    </form>
+</div>
+<p>
+    <a href="{% url 'app:poll_results' poll.pk %}" class="back-link">Смотреть результаты →</a>
+</p>
+<a href="{% url 'app:poll_list' %}" class="back-link">← К списку опросов</a>
+{% endblock %}

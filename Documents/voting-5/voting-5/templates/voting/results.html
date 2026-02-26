@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Результаты: {{ poll.question }}{% endblock %}
+
+{% block content %}
+<h1 class="page-title">Результаты</h1>
+<p class="results-total" style="font-size: 1.05rem; margin-bottom: 0.5rem;">{{ poll.question }}</p>
+<div class="results-card">
+    <p class="results-total">Всего голосов: <strong>{{ total_votes }}</strong></p>
+    <ul class="results-list">
+        {% for choice, count, percent in choices_with_counts %}
+        <li>
+            <div class="result-bar-wrap">
+                <span>{{ choice.text }}</span>
+                <span>{{ count }} ({{ percent|floatformat:1 }}%)</span>
+            </div>
+            <div class="result-bar-bg">
+                <div class="result-bar-fill" style="width: {{ percent }}%;"></div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% if user.is_authenticated and user == poll.created_by %}
+<p style="margin-top: 1rem;">
+    <a href="{% url 'app:poll_edit' poll.pk %}" class="btn btn--secondary">Редактировать опрос</a>
+</p>
+{% endif %}
+<a href="{% url 'app:poll_list' %}" class="back-link">← К списку опросов</a>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Редактировать: {{ poll.question }}{% endblock %}
+
+{% block content %}
+<h1 class="page-title">Редактировать опрос</h1>
+<div class="form-card">
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_question">{{ form.question.label }}</label>
+            {{ form.question }}
+            {% if form.question.errors %}
+                <span class="form-error">{{ form.question.errors.0 }}</span>
+            {% endif %}
+        </div>
+        {% for field in form.choice_fields %}
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}<span class="form-error">{{ field.errors.0 }}</span>{% endif %}
+        </div>
+        {% endfor %}
+        <div class="form-actions">
+            <button type="submit" class="btn btn--primary">Сохранить</button>
+            <a href="{% url 'app:poll_list' %}" class="btn btn--secondary">Отмена</a>
+        </div>
+    </form>
+</div>
+<a href="{% url 'app:poll_detail' poll.pk %}" class="back-link">← К опросу</a>
+{% endblock %}

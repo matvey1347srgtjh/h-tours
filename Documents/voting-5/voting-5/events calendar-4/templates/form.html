@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="glass-card form-container">
+    <h1 class="ios-header">Новое событие</h1>
+    <form method="post" class="ios-form">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.title.label_tag }}
+            {{ form.title }}
+        </div>
+        <div class="form-group">
+            {{ form.event_datetime.label_tag }}
+            {{ form.event_datetime }}
+        </div>
+        <button type="submit" class="ios-submit">Создать</button>
+    </form>
+    <a href="{% url 'event_list' %}" class="back-link">Отмена</a>
+</div>
+{% endblock %}

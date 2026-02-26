@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Задачи</h1>
+<ul class="task-list">
+    {% for task in tasks %}
+    <li class="task-item {% if task.status == 'done' %}task-done{% endif %}">
+        <div class="task-main">
+            <span class="task-title">{{ task.title }}</span>
+            <span class="task-status">{{ task.get_status_display }}</span>
+            <span class="task-status">{{ task.created_at.time }}</span>
+        </div>
+        <div class="task-actions">
+            <a class="btn small" href="/toggle-status/{{ task.id }}/">Статус</a>
+            <a class="btn small" href="/edit/{{ task.id }}/">Редактировать</a>
+            <a class="btn small danger" href="/delete/{{ task.id }}/">Удалить</a>
+        </div>
+    </li>
+    {% empty %}
+    <li class="empty">
+        Задач нет. <a href="/create/">Создать задачу</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

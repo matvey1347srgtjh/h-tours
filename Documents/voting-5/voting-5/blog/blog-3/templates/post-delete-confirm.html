@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-card">
+        <h1 class="form-title">Удаление поста</h1>
+        <p style="margin-bottom: 24px; color: var(--text-muted);">
+            Вы уверены, что хотите удалить пост <strong>"{{ post.title }}"</strong>? Это действие нельзя отменить.
+        </p>
+        
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-actions">
+                <button type="submit" class="btn-submit" style="background: var(--accent);">Да, удалить навсегда</button>
+                <a href="{% url 'blog-list' %}" class="btn-cancel">Отмена</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

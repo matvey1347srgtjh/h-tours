@@ -1,0 +1,18 @@
+{% extends "base.html" %} {% block content %}
+<div class="form-container">
+  <div class="form-card">
+    <h1 class="form-title">Создать новый пост</h1>
+
+    <form method="POST" class="post-form">
+      {% csrf_token %}
+
+      <div class="django-form-wrapper">{{ form.as_p }}</div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-save">Опубликовать пост</button>
+        <a href="{% url 'blog-list' %}" class="btn-cancel">Отмена</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

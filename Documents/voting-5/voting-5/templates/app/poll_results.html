@@ -1,0 +1,16 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Результаты: {{ poll.question }}{% endblock %}
+
+{% block content %}
+<h1>Результаты: {{ poll.question }}</h1>
+<p>Всего голосов: {{ total_votes }}</p>
+<ul class="results">
+    {% for choice, count, percent in choices_with_counts %}
+    <li>
+        <strong>{{ choice.text }}</strong> — {{ count }} ({{ percent|floatformat:1 }}%)
+    </li>
+    {% endfor %}
+</ul>
+<p><a href="{% url 'app:poll_list' %}">К списку опросов</a></p>
+{% endblock %}

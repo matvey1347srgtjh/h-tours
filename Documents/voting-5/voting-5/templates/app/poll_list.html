@@ -1,0 +1,33 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Опросы{% endblock %}
+
+{% block content %}
+<h1>Опросы</h1>
+{% if user.is_authenticated %}
+<p><a href="{% url 'app:poll_create' %}">Создать новый опрос</a></p>
+{% endif %}
+
+<ul class="poll-list">
+    {% for poll in polls %}
+    <li>
+        <a href="{% url 'app:poll_detail' poll.pk %}">{{ poll.question }}</a>
+        <span class="meta"> — {{ poll.get_total_votes }} голосов</span>
+    </li>
+    {% empty %}
+    <li>Пока нет опросов.</li>
+    {% endfor %}
+</ul>
+
+{% if page_obj.paginator.num_pages > 1 %}
+<nav class="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">Назад</a>
+    {% endif %}
+    <span>Стр. {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Вперёд</a>
+    {% endif %}
+</nav>
+{% endif %}
+{% endblock %}

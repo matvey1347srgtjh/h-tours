@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    <title>{% block title %}ToDo list{% endblock %}</title>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a class="logo" href="/">ToDo</a>
+            <div class="nav-links">
+                <a class="btn" href="/create/">Создать задачу</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer"></footer>
+</body>
+</html>
+

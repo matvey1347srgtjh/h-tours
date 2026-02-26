@@ -1,0 +1,62 @@
+{% extends "base.html" %} {% block content %}
+<div class="blog-container">
+  <h1 class="page-title">Лента записей</h1>
+
+  {% for post in posts %}
+  <article class="post-card">
+    <header class="post-header">
+      <h2 class="post-title">{{ post.title }}</h2>
+      <div class="post-meta">
+        <span class="post-author">@{{ post.author_name }}</span>
+        <span class="post-date">{{ post.created_at|date:"d.m.Y H:i" }}</span>
+      </div>
+    </header>
+
+    <div class="post-content">{{ post.text|linebreaks }}</div>
+
+    <div
+      class="post-controls"
+      style="margin-top: 10px; display: flex; gap: 15px"
+    >
+      <a
+        href="{% url 'post-edit' pk=post.pk %}"
+        class="nav-item"
+        style="font-size: 0.8rem; color: var(--primary)"
+        >Редактировать</a
+      >
+      <a
+        href="{% url 'post-delete' pk=post.pk %}"
+        class="nav-item"
+        style="font-size: 0.8rem; color: var(--accent)"
+        >Удалить</a
+      >
+    </div>
+    <br />
+
+    <section class="comments-section">
+      <h3 class="comments-title">Комментарии</h3>
+
+      <div class="comments-list">
+        {% for comment in post.comment_set.all %}
+        <div class="comment-item">
+          <span class="comment-author">{{ comment.author }}:</span>
+          <span class="comment-text">{{ comment.text_comment }}</span>
+        </div>
+        {% empty %}
+        <p class="no-comments">Напишите первый комментарий</p>
+        {% endfor %}
+      </div>
+
+      <form method="post" class="comment-form">
+        {% csrf_token %}
+        <input type="hidden" name="post_id" value="{{ post.id }}" />
+        <div class="form-fields">{{ form.as_p }}</div>
+        <button type="submit" class="btn-submit">Отправить</button>
+      </form>
+    </section>
+  </article>
+  {% empty %}
+  <p class="empty-blog">Постов пока нет. Будьте первым, кто что-то напишет!</p>
+  {% endfor %}
+</div>
+{% endblock content %}

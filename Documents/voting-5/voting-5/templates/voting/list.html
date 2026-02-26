@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}Опросы{% endblock %}
+
+{% block content %}
+<h1 class="page-title">Опросы</h1>
+{% if user.is_authenticated %}
+<p style="margin-bottom: 1.25rem;">
+    <a href="{% url 'app:poll_create' %}" class="btn btn--primary">Создать опрос</a>
+</p>
+{% endif %}
+
+<ul class="poll-list">
+    {% for item in poll_list_data %}
+    <li class="poll-card-wrap">
+        <div class="poll-card poll-card--block">
+            <div class="poll-card__question">{{ item.poll.question }}</div>
+
+            {% if item.voted %}
+            <div class="poll-card__results">
+                <p class="results-total">Всего голосов: <strong>{{ item.total_votes }}</strong></p>
+                <ul class="results-list">
+                    {% for choice, count, percent, percent_css in item.choices_with_counts %}
+                    <li>
+                        <div class="result-bar-wrap">
+                            <span>{{ choice.text }}</span>
+                            <span>{{ count }} ({{ percent|floatformat:1 }}%)</span>
+                        </div>
+                        <div class="result-bar-bg">
+                            <div class="result-bar-fill" style="width: {{ percent_css }}%;"></div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% if user.is_authenticated and user == item.poll.created_by %}
+                <a href="{% url 'app:poll_edit' item.poll.pk %}" class="btn btn--secondary btn--sm">Редактировать опрос</a>
+                {% endif %}
+            </div>
+            {% else %}
+            <div class="poll-card__vote">
+                <form method="post" action="{% url 'app:vote_submit' item.poll.pk %}">
+                    {% csrf_token %}
+                    <ul class="choices-list">
+                        {% for choice in item.form.choice.field.queryset %}
+                        <li>
+                            <label>
+                                <input type="radio" name="choice" value="{{ choice.pk }}" required>
+                                <span>{{ choice.text }}</span>
+                            </label>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn--primary">Голосовать</button>
+                    </div>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </li>
+    {% empty %}
+    <li class="poll-card-wrap">
+        <div class="poll-card poll-card--block">
+            <div class="poll-card__question">Пока нет опросов</div>
+            <div class="poll-card__meta">Создайте первый опрос, чтобы начать голосование.</div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+{% if page_obj.paginator.num_pages > 1 %}
+<nav class="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">Назад</a>
+    {% endif %}
+    <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Вперёд</a>
+    {% endif %}
+</nav>
+{% endif %}
+{% endblock %}

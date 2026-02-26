@@ -1,0 +1,14 @@
+{% extends 'app/base.html' %}
+
+{% block title %}{{ poll.question }}{% endblock %}
+
+{% block content %}
+<h1>{{ poll.question }}</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Голосовать</button>
+</form>
+<p><a href="{% url 'app:poll_results' poll.pk %}">Смотреть результаты</a></p>
+<p><a href="{% url 'app:poll_list' %}">К списку опросов</a></p>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Опросы{% endblock %} | Голосование</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="{% url 'app:poll_list' %}" class="logo">Голосование</a>
+            <nav class="nav">
+                <a href="{% url 'app:poll_list' %}">Опросы</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'app:poll_create' %}">Создать опрос</a>
+                    <span class="user">{{ user.username }}</span>
+                    <form method="post" action="{% url 'app:logout' %}" class="nav-logout">
+                        {% csrf_token %}
+                        <button type="submit" class="nav-logout__btn">Выйти</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'app:login' %}?next={{ request.path }}">Войти</a>
+                    <a href="{% url 'app:register' %}">Регистрация</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+    <main class="main container">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="message message--{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="footer">
+        <div class="container">Опросы и голосования</div>
+    </footer>
+</body>
+</html>

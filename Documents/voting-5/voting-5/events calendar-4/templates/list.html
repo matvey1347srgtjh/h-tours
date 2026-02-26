@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block content %}
+<header class="ios-header">
+  <h1>События</h1>
+  <a href="{% url 'create_event' %}" class="add-button">+</a>
+</header>
+<br />
+
+<div class="event-grid">
+  {% for event in events %}
+  <div
+    class="glass-card {% if event.should_send_notification %}notify{% endif %}"
+  >
+    <h2 class="event-title">{{ event.title }}</h2>
+    <p class="event-date">{{ event.event_datetime|date:"d E, H:i" }}</p>
+
+    {% if event.should_send_notification %}
+    <span class="badge">Скоро</span>
+    {% endif %}
+  </div>
+  {% empty %}
+  <p class="empty-text">Событий пока нет</p>
+  {% endfor %}
+</div>
+{% endblock %}

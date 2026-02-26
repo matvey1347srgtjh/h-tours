@@ -1,0 +1,39 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Platform</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="main-header">
+      <nav class="container">
+        <div class="logo">MyBlog</div>
+        <ul class="nav-links">
+          <li><a href="{% url 'blog-list' %}" class="nav-item">Главная</a></li>
+          <li>
+            <a href="{% url 'post-new' %}" class="nav-item btn-primary"
+              >Создать пост</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container content-wrapper">
+      {% block content %}{% endblock content %}
+    </main>
+
+    <footer class="main-footer">
+      <div class="container">
+        <p>&copy; 2026 Blog Platform. Сделано на Django.</p>
+      </div>
+    </footer>
+  </body>
+</html>
